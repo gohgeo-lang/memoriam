@@ -5,6 +5,8 @@ import About from "./pages/About";
 import FuneralInfo from "./pages/FuneralInfo";
 import Products from "./pages/Products";
 import Memoriam from "./pages/Memoriam";
+import HumanMemoriam from "./pages/memoriam/HumanMemoriam";
+import PetMemoriam from "./pages/memoriam/PetMemoriam";
 import Support from "./pages/Support";
 
 import Header from "./components/Header";
@@ -22,6 +24,8 @@ function App() {
           <Route path="/funeral" element={<FuneralInfo />} />
           <Route path="/products" element={<Products />} />
           <Route path="/memoriam" element={<Memoriam />} />
+          <Route path="/memoriam/human" element={<HumanMemoriam />} />
+          <Route path="/memoriam/pet" element={<PetMemoriam />} />
           <Route path="/support" element={<Support />} />
         </Routes>
       </main>
