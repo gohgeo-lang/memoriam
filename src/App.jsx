@@ -1,16 +1,19 @@
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import About from "./pages/About";
-import FuneralInfo from "./pages/FuneralInfo";
-import Products from "./pages/Products";
-import Memoriam from "./pages/Memoriam";
-import HumanMemoriam from "./pages/memoriam/HumanMemoriam";
-import PetMemoriam from "./pages/memoriam/PetMemoriam";
-import Support from "./pages/Support";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import FuneralInfo from "./pages/FuneralInfo/FuneralInfo";
+import Products from "./pages/Products/Products";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Memoriam from "./pages/Memoriam/MemoriamPage";
+import HumanMemoriam from "./pages/Memoriam/HumanMemoriam/HumanMemoriam";
+import PetMemoriam from "./pages/Memoriam/PetMemoriam/PetMemoriam";
+
+import Support from "./pages/Support/Support";
+
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+
 import "./App.css";
 
 function App() {

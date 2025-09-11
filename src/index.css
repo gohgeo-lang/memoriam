@@ -1,11 +1,9 @@
 :root {
-  /* 모노톤 베이스 */
   --color-bg: #ffffff;
-  --color-text: #444444; /* 본문 */
-  --color-subtle: #777777; /* 보조 텍스트 */
-  --color-border: #e0e0e0; /* 은은한 회색 라인 */
+  --color-text: #444444;
+  --color-subtle: #777777;
+  --color-border: #e0e0e0;
 
-  /* 브라운 포인트 */
   --color-primary: #5a3e36;
   --color-primary-light: #7b5449;
 
@@ -16,18 +14,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 메인 컨텐츠는 항상 헤더 밑에서 시작 */
 main {
-  padding-top: 100px; /* 헤더 높이만큼 여백 */
+  padding-top: 100px;
 }
 
-/* 기본 */
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
 }
 
-/* 링크 */
 a {
   color: var(--color-text);
   text-decoration: none;
@@ -37,7 +32,6 @@ a:hover {
   color: var(--color-primary);
 }
 
-/* 버튼 */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
