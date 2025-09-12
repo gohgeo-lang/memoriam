@@ -5,13 +5,11 @@ import Section from "../../components/Section/Section";
 export default function Home() {
   return (
     <div className="home">
-      {/* Hero Section */}
       <Section className="hero">
         <h1>소중한 기억을 가장 선명히 조각합니다.</h1>
         <p>사람과 반려동물 모두를 위한 고요하고 따뜻한 추모 공간, 메모리엄</p>
       </Section>
 
-      {/* Values Section */}
       <Section className="values" title="메모리엄이 전하는 가치">
         <div className="values-list">
           <div className="card">
@@ -29,7 +27,6 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Preview Section */}
       <Section className="preview" title="추모의 공간 미리보기">
         <div className="preview-list">
           <div className="card preview-card">
@@ -41,7 +38,6 @@ export default function Home() {
         <button className="primary-btn">더 많은 이야기 보기</button>
       </Section>
 
-      {/* Contact Section */}
       <Section className="contact" title="필요한 순간, 곁에 있겠습니다.">
         <form className="contact-form">
           <Input label="이름" placeholder="이름을 입력하세요" />

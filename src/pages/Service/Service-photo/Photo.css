@@ -1,0 +1,41 @@
+.photo-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.photo-title {
+  margin-bottom: 20px;
+}
+
+.template-buttons {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.photo-canvas {
+  border: 1px solid #ccc;
+  margin: 20px auto;
+  display: block;
+}
+
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  background: #795548;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5d4037;
+}
