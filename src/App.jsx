@@ -2,12 +2,11 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
-import FuneralInfo from "./pages/FuneralInfo/FuneralInfo";
-import Products from "./pages/Products/Products";
+import Guide from "./pages/Guide/Guide";
 
-import Memoriam from "./pages/Memoriam/MemoriamPage";
-import HumanMemoriam from "./pages/Memoriam/HumanMemoriam/HumanMemoriam";
-import PetMemoriam from "./pages/Memoriam/PetMemoriam/PetMemoriam";
+import Memoriam from "./pages/Service/Service-memoriam/Memoriam";
+import Estimate from "./pages/Service/Service-estimate/Estimate";
+import Photo from "./pages/Service/Service-photo/Photo";
 
 import Support from "./pages/Support/Support";
 
@@ -24,11 +23,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/funeral" element={<FuneralInfo />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/guide" element={<Guide />} />
           <Route path="/memoriam" element={<Memoriam />} />
-          <Route path="/memoriam/human" element={<HumanMemoriam />} />
-          <Route path="/memoriam/pet" element={<PetMemoriam />} />
+          <Route path="/estimate" element={<Estimate />} />
+          <Route path="/photo" element={<Photo />} />
           <Route path="/support" element={<Support />} />
         </Routes>
       </main>

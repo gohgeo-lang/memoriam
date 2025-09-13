@@ -9,16 +9,16 @@ export default function Header() {
 
   const menuItems = [
     { path: "/", label: "홈" },
-    { path: "/about", label: "회사소개" },
-    { path: "/funeral", label: "장례정보" },
-    { path: "/products", label: "상품정보" },
-    { label: "메모리얼", hasSubmenu: true },
+    { path: "/about", label: "브랜드" },
+    { path: "/guide", label: "안심가이드" },
+    { label: "서비스", hasSubmenu: true },
     { path: "/support", label: "고객센터" },
   ];
 
   const submenuItems = [
-    { path: "/memoriam/human", label: "고인 추모" },
-    { path: "/memoriam/pet", label: "반려동물 추모" },
+    { path: "/estimate", label: "비교견적" },
+    { path: "/photo", label: "영정사진" },
+    { path: "/memoriam", label: "메모리얼" },
   ];
 
   // 현재 활성화된 메뉴 찾기
