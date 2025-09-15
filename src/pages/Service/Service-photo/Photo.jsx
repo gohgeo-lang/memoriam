@@ -1,80 +1,102 @@
-import { useState, useRef } from "react";
-import "./Photo.css"; // 별도 CSS 파일 불러오기
+import { useState } from "react";
+import "./Photo.css";
 
-function Photo() {
-  const [petImage, setPetImage] = useState(null);
-  const [template, setTemplate] = useState("/templates/template1.png");
-  const canvasRef = useRef(null);
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setPetImage(event.target.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const drawCanvas = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-
-    const petImg = new Image();
-    const tplImg = new Image();
-
-    petImg.src = petImage;
-    tplImg.src = template;
-
-    petImg.onload = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // 반려동물 사진
-      ctx.drawImage(petImg, 50, 100, 400, 400);
-
-      // 템플릿
-      tplImg.onload = () => {
-        ctx.drawImage(tplImg, 0, 0, canvas.width, canvas.height);
-      };
-    };
-  };
-
-  const downloadImage = () => {
-    const link = document.createElement("a");
-    link.download = "memorial_photo.png";
-    link.href = canvasRef.current.toDataURL("image/png");
-    link.click();
-  };
+export default function Photo() {
+  const [activeStep, setActiveStep] = useState(1);
 
   return (
-    <div className="photo-container">
-      <h2 className="photo-title">반려동물 영정사진 제작</h2>
+    <div className="sideBar">
+      <div className="sideBar-nav">
+        <ul>
+          <li onClick={() => setActiveStep(1)}>
+            <i className="bi bi-image"></i>
+          </li>
 
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
+          <li onClick={() => setActiveStep(2)}>
+            <i className="bi bi-brush"></i>
+          </li>
+          <li onClick={() => setActiveStep(3)}>
+            <i className="bi bi-person-square"></i>
+          </li>
+          <li onClick={() => setActiveStep(4)}>
+            <i className="bi bi-palette"></i>
+          </li>
+          <li onClick={() => setActiveStep(5)}>
+            <i className="bi bi-sliders"></i>
+          </li>
+          <li onClick={() => setActiveStep(6)}>
+            <i className="bi bi-stars"></i>
+          </li>
+        </ul>
+      </div>
+      <div className="sideBar-detail">
+        {activeStep === 1 && (
+          <div>
+            <h2>우리아이 사진</h2>
+            <p>업로드할 이미지를 선택하세요.</p>
+            <ul>
+              첨부이미지 가이드
+              <li>피사체는 크면 좋아요.</li>
+              <li>정면일 때 인식률이 높아요.</li>
+              <li>피사체 이외의 것은 적을수록 좋아요.</li>
+            </ul>
+          </div>
+        )}
 
-      <div className="template-buttons">
-        <button onClick={() => setTemplate("/templates/template1.png")}>
-          템플릿1
-        </button>
-        <button onClick={() => setTemplate("/templates/template2.png")}>
-          템플릿2
-        </button>
+        {activeStep === 2 && (
+          <div>
+            <h2>빠른 제작</h2>
+          </div>
+        )}
+
+        {activeStep === 3 && (
+          <div>
+            <h2>디자인템플릿</h2>
+          </div>
+        )}
+
+        {activeStep === 4 && (
+          <div>
+            <h2>배경설정</h2>
+          </div>
+        )}
+
+        {activeStep === 5 && (
+          <div>
+            <h2>사진보정</h2>
+            <label>
+              대비:
+              <input />
+            </label>
+            <label>
+              밝기:
+              <input />
+            </label>
+            <label>
+              채도:
+              <input />
+            </label>
+            <label>
+              색온도:
+              <input />
+            </label>
+            <label>
+              선명도:
+              <input />
+            </label>
+          </div>
+        )}
+
+        {activeStep === 6 && (
+          <div>
+            <h2>필터효과</h2>
+          </div>
+        )}
       </div>
 
-      <canvas
-        ref={canvasRef}
-        width={500}
-        height={600}
-        className="photo-canvas"
-      />
-
-      <div className="action-buttons">
-        <button onClick={drawCanvas}>합성하기</button>
-        <button onClick={downloadImage}>다운로드</button>
+      <div className="sideBar-preview">
+        <h2>미리보기 화면</h2>
       </div>
     </div>
   );
 }
-
-export default Photo;
