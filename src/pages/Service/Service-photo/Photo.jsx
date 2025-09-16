@@ -1,8 +1,17 @@
 import { useState } from "react";
 import "./Photo.css";
+import PreviewCanvas from "../../../components/PreviewCanvas";
 
 export default function Photo() {
   const [activeStep, setActiveStep] = useState(1);
+  const [image, setImage] = useState(null);
+
+  const handleUPload = (e) => {
+    const file = e.target.file[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
+  };
 
   return (
     <div className="sideBar">
@@ -34,6 +43,7 @@ export default function Photo() {
           <div>
             <h2>우리아이 사진</h2>
             <p>업로드할 이미지를 선택하세요.</p>
+            <input type="file" accept="image/*" onChange={handleUPload} />
             <ul>
               첨부이미지 가이드
               <li>피사체는 크면 좋아요.</li>
@@ -95,6 +105,7 @@ export default function Photo() {
       </div>
 
       <div className="sideBar-preview">
+        <PreviewCanvas image={image} />
         <h2>미리보기 화면</h2>
       </div>
     </div>
