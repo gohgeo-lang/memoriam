@@ -7,7 +7,7 @@ export default function Home() {
     <div className="home">
       <Section className="hero">
         <h1>소중한 기억을 가장 선명히 조각합니다.</h1>
-        <p>사람과 반려동물 모두를 위한 고요하고 따뜻한 추모 공간, 메모리엄</p>
+        <p>우리아이를 위한 고요하고 따뜻한 추모 공간, 메모리엄</p>
       </Section>
 
       <Section className="values" title="메모리엄이 전하는 가치">
