@@ -18,7 +18,6 @@ export default function PreviewCanvas({
 
   useEffect(() => {
     if (!imgRef.current || !img) return;
-
     const node = imgRef.current;
 
     try {
@@ -92,18 +91,27 @@ export default function PreviewCanvas({
     currentPreset,
   ]);
 
+  const getScaledProps = (img, maxWidth, maxHeight) => {
+    const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+    const newWidth = img.width * ratio;
+    const newHeight = img.height * ratio;
+    return {
+      width: newWidth,
+      height: newHeight,
+      x: (maxWidth - newWidth) / 2,
+      y: (maxHeight - newHeight) / 2,
+    };
+  };
+
   return (
-    <Stage width={600} height={750}>
+    <Stage width={400} height={500}>
       <Layer>
-        <Rect width={600} height={750} fill={background || "#fff"} />
+        <Rect width={400} height={500} fill={background || "#fff"} />
         {img && (
           <KonvaImage
             ref={imgRef}
             image={img}
-            width={600}
-            height={750}
-            x={0}
-            y={0}
+            {...getScaledProps(img, 400, 500)}
           />
         )}
       </Layer>
