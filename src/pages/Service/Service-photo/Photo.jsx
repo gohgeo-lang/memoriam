@@ -88,7 +88,7 @@ export default function Photo() {
   };
 
   return (
-    <div className="sideBar">
+    <div className="sideBar mt-20">
       <div className="sideBar-nav">
         <ul>
           <li onClick={() => setActiveStep(1)}>
