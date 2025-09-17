@@ -51,6 +51,34 @@ export default function Photo() {
   const [temperature, setTemperature] = useState(0);
   const [sharpness, setSharpness] = useState(0);
 
+  //Step6 변수
+  const [currentPreset, setCurrentPreset] = useState("default");
+
+  const applyPreset = (preset) => {
+    setCurrentPreset(preset.type);
+
+    switch (preset.type) {
+      case "grayscale":
+        setBackground("#888888");
+        break;
+      case "sepia":
+        setBackground("#704214");
+        break;
+      case "noise":
+        setBackground("#999999");
+        break;
+      default:
+        break;
+    }
+  };
+
+  const presets = [
+    { id: 1, name: "기본", type: "default" },
+    { id: 2, name: "흑백", type: "grayscale" },
+    { id: 3, name: "세피아", type: "sepia" },
+    { id: 4, name: "필름노이즈", type: "noise" },
+  ];
+
   const handleUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -81,6 +109,9 @@ export default function Photo() {
           </li>
           <li onClick={() => setActiveStep(6)}>
             <i className="bi bi-stars"></i>
+          </li>
+          <li onClick={() => setActiveStep(7)}>
+            <i className="bi bi-upload"></i>
           </li>
         </ul>
       </div>
@@ -207,8 +238,31 @@ export default function Photo() {
         )}
 
         {activeStep === 6 && (
-          <div>
+          <div className="activeStep-six">
             <h2>필터효과</h2>
+            <div className="filter-presets">
+              {presets.map((preset) => (
+                <div
+                  key={preset.id}
+                  className="filter-card"
+                  onClick={() => applyPreset(preset)}
+                >
+                  <div
+                    className="filter-preview"
+                    style={{ background: "#ddd" }}
+                  ></div>
+                  <p>{preset.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeStep === 7 && (
+          <div className="activeStep-seven">
+            <h2>저장하기</h2>
+            <p>사진 저장하기</p>
+            <p>사진 공유하기</p>
           </div>
         )}
       </div>
@@ -221,13 +275,14 @@ export default function Photo() {
           </div>
         ) : (
           <PreviewCanvas
-            image={previewImage || null}
+            image={previewImage || image || null}
             background={background}
             brightness={brightness}
             contrast={contrast}
             saturation={saturation}
             temperature={temperature}
             sharpness={sharpness}
+            currentPreset={currentPreset}
           />
         )}
       </div>
