@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Section from "../../../components/Section/Section";
-import MemorialCard from "../../../components/Service-memoriam/MemorialCard.jsx";
-import MemorialModal from "../../../components/Service-memoriam/MemorialModal.jsx";
+import MemorialCard from "../../../components/Service-memoriam/MemorialCard";
+import MemorialModal from "../../../components/Service-memoriam/MemorialModal";
 
 const initialStories = [
   {
