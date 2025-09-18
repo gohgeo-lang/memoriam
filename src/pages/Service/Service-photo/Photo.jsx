@@ -19,9 +19,21 @@ export default function Photo() {
   const templates = [
     {
       id: 1,
-      name: "정장1",
+      name: "정장",
       icon: "/img/suit-icon.png",
       result: "/img/result-suit.png",
+    },
+    {
+      id: 2,
+      name: "한복",
+      icon: "/img/hanbok-icon.png",
+      result: "/img/result-hanbok.png",
+    },
+    {
+      id: 3,
+      name: "캐주얼",
+      icon: "/img/casual-icon.png",
+      result: "/img/result-casual.png",
     },
   ];
 
