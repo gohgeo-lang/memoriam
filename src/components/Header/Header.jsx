@@ -8,7 +8,6 @@ export default function Header() {
   const location = useLocation();
 
   const menuItems = [
-    { path: "/", label: "홈" },
     { path: "/about", label: "브랜드" },
     { path: "/guide", label: "안심가이드" },
     { label: "서비스", hasSubmenu: true },
@@ -48,9 +47,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="header">
+      <header className="header z-1">
         <div className="header-left">
-          <div className="header-logo">Memoriam</div>
+          <Link
+            to="/"
+            className="text-xl font-bold !no-underline !text-[#7b5449] transition duration-200 hover:scale-[1.02]"
+          >
+            Memoriam
+          </Link>
           {activeMenu && <span className="header-active">{activeMenu}</span>}
         </div>
 
