@@ -21,7 +21,6 @@ export default function Header() {
     { path: "/memoriam", label: "메모리얼" },
   ];
 
-  // 현재 활성화된 메뉴 찾기
   let activeMenu = null;
   for (let item of menuItems) {
     if (

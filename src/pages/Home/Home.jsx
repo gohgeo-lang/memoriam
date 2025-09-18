@@ -30,9 +30,10 @@ export default function Home() {
       <Section className="preview" title="추모의 공간 미리보기">
         <div className="preview-list">
           <div className="card preview-card">
-            <img src="/images/sample1.jpg" alt="추모 사진" />
-            <h3>홍길동 (1950–2025)</h3>
-            <p>“따뜻한 미소로 기억됩니다.”</p>
+            <img src="./img/pet.jpg" alt="추모 사진" />
+            <h3>댕청이</h3>
+            <h5>(2010 ~ 2025)</h5>
+            <p>“내새깽이”</p>
           </div>
         </div>
         <button className="primary-btn">더 많은 이야기 보기</button>
