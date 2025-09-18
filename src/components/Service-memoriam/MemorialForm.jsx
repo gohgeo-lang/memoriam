@@ -98,7 +98,7 @@ export default function MemorialForm({ onStorySubmit, onCancel }) {
               <img
                 src={imagePreview}
                 alt="미리보기"
-                className="mx-auto h-48 w-auto rounded-md"
+                className="mx-auto h-48 w-full object-cover rounded-md"
               />
             ) : (
               <svg
