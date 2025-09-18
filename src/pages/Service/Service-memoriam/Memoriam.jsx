@@ -2,6 +2,10 @@ import { useState } from "react";
 import Section from "../../../components/Section/Section";
 import MemorialCard from "../../../components/Service-memoriam/MemorialCard";
 import MemorialModal from "../../../components/Service-memoriam/MemorialModal";
+import MemorialForm from "../../../components/Service-memoriam/MemorialForm";
+
+// CSS 파일이 없으면 주석 처리하거나 삭제합니다.
+// import "./Memoriam.css";
 
 const initialStories = [
   {
@@ -42,12 +46,12 @@ const initialStories = [
       },
     ],
   },
-  // ... more stories
 ];
 
 export default function Memoriam() {
   const [stories, setStories] = useState(initialStories);
   const [selectedStory, setSelectedStory] = useState(null);
+  const [isWriting, setIsWriting] = useState(false);
 
   const handleOpenModal = (story) => {
     setSelectedStory(story);
@@ -69,8 +73,8 @@ export default function Memoriam() {
 
   const handleCommentSubmit = (storyId, commentText) => {
     const newComment = {
-      id: Date.now(), // 간단한 ID 생성
-      author: "방문자", // 실제로는 로그인 정보 등을 활용해야 함
+      id: Date.now(),
+      author: "방문자",
       text: commentText,
     };
 
@@ -81,7 +85,6 @@ export default function Memoriam() {
             ...story,
             comments: [...story.comments, newComment],
           };
-          // 모달이 열려있다면, 선택된 스토리 정보도 업데이트
           if (selectedStory && selectedStory.id === storyId) {
             setSelectedStory(updatedStory);
           }
@@ -92,22 +95,45 @@ export default function Memoriam() {
     );
   };
 
+  const handleStorySubmit = (newStory) => {
+    setStories((prevStories) => [newStory, ...prevStories]);
+    setIsWriting(false);
+  };
+
   return (
     <div className="memoriam-page pt-20">
       <Section title="우리의 이야기">
-        <p className="mb-10 text-gray-600">
-          이곳은 소중한 아이들을 기억하고, 따뜻한 위로를 나누는 공간입니다.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {stories.map((story) => (
-            <MemorialCard
-              key={story.id}
-              story={story}
-              onOpenModal={handleOpenModal}
-              onRemember={handleRememberClick}
-            />
-          ))}
-        </div>
+        {isWriting ? (
+          <MemorialForm
+            onStorySubmit={handleStorySubmit}
+            onCancel={() => setIsWriting(false)}
+          />
+        ) : (
+          <>
+            <div className="flex justify-between items-center mb-10">
+              <p className="text-gray-600">
+                먼저 별로 여행을 간 아이들을 기억하고, 다시 만날 날 함께 할
+                이야기를 나눠주세요
+              </p>
+              <button
+                onClick={() => setIsWriting(true)}
+                className="bg-[#7b5449] text-white px-4 py-2 rounded-md hover:bg-[#694237] transition-colors"
+              >
+                내 이야기 나누기
+              </button>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {stories.map((story) => (
+                <MemorialCard
+                  key={story.id}
+                  story={story}
+                  onOpenModal={handleOpenModal}
+                  onRemember={handleRememberClick}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </Section>
 
       {selectedStory && (
