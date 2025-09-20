@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./Header.css";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,66 +46,103 @@ export default function Header() {
 
   return (
     <>
-      <header className="header z-1">
-        <div className="header-left">
+      <header className="z-10 fixed flex justify-between py-2 px-2 top-0 left-0 right-0 bg-gray-100/80 backdrop-blur-sm">
+        <div className="flex items-baseline gap-3">
           <Link
             to="/"
-            className="text-xl font-bold !no-underline !text-[#7b5449] transition duration-200 hover:scale-[1.02]"
+            className="text-xl font-bold no-underline text-[#7b5449] transition duration-200 hover:scale-[1.02]"
           >
             Memoriam
           </Link>
-          {activeMenu && <span className="header-active">{activeMenu}</span>}
+          {activeMenu && (
+            <span className="text-xs font-thin">{activeMenu}</span>
+          )}
         </div>
 
-        <button className="header-toggle" onClick={() => setIsOpen(!isOpen)}>
-          ☰
-        </button>
-      </header>
-
-      <nav className={`menu ${isOpen ? "open" : ""}`}>
-        {menuItems.map((item, index) =>
-          item.hasSubmenu ? (
-            <span
-              key={item.label}
-              onClick={() => setSubmenuOpen(!submenuOpen)}
-              className="menu-item"
-              style={{ transitionDelay: `${index * 0.1}s` }}
-            >
-              {item.label}
-            </span>
-          ) : (
-            <Link
-              key={item.path}
-              to={item.path}
-              onClick={() => {
-                setIsOpen(false);
-                setSubmenuOpen(false);
-              }}
-              className={`menu-item ${isActive(item.path) ? "active" : ""}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
-            >
-              {item.label}
-            </Link>
-          )
-        )}
-      </nav>
-
-      <div className={`submenu ${submenuOpen && isOpen ? "open" : ""}`}>
-        {submenuItems.map((sub, subIndex) => (
-          <Link
-            key={sub.path}
-            to={sub.path}
+        {!isOpen ? (
+          <button
+            className="text-2xl text-[#7b5449] cursor-pointer"
+            onClick={() => setIsOpen(true)}
+          >
+            ☰
+          </button>
+        ) : submenuOpen ? (
+          <button
+            className="text-2xl text-[#7b5449] cursor-pointer z-20"
+            onClick={() => setSubmenuOpen(false)}
+          >
+            ←
+          </button>
+        ) : (
+          <button
+            className="text-2xl text-[#7b5449] cursor-pointer z-30"
             onClick={() => {
               setIsOpen(false);
               setSubmenuOpen(false);
             }}
-            className={`submenu-item ${isActive(sub.path) ? "active" : ""}`}
-            style={{ transitionDelay: `${subIndex * 0.1 + 0.2}s` }}
           >
-            {sub.label}
-          </Link>
-        ))}
-      </div>
+            x
+          </button>
+        )}
+
+        <nav
+          className={`fixed top-4 left-0 right-0 flex justify-center gap-3 p-0
+    transition-all duration-300 ease-in-out ${
+      isOpen && !submenuOpen
+        ? "opacity-100 translate-x-20 text-[#7b5449] pointer-events-auto"
+        : "opacity-0 translate-x-100 text-[#7b5449] pointer-events-none"
+    }`}
+        >
+          {menuItems.map((item, index) =>
+            item.hasSubmenu ? (
+              <span
+                key={item.label}
+                onClick={() => setSubmenuOpen(!submenuOpen)}
+                className="text-sm font-thin text-[#7b5449] cursor-pointer"
+                style={{ transitionDelay: `${index * 0.1}s` }}
+              >
+                {item.label}
+              </span>
+            ) : (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => {
+                  setIsOpen(false);
+                  setSubmenuOpen(false);
+                }}
+                className={`text-sm font-thin text-[#7b5449] no-underline text-inherit cursor-pointer `}
+                style={{ transitionDelay: `${index * 0.1}s` }}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
+        </nav>
+
+        <div
+          className={`fixed top-4 left-0 right-0 flex justify-center gap-6 p-0 ${
+            submenuOpen && isOpen
+              ? "opacity-100 translate-x-20 text-[#7b5449] pointer-events-auto"
+              : "opacity-0 translate-x-100 text-[#7b5449] pointer-events-none"
+          }`}
+        >
+          {submenuItems.map((sub, subIndex) => (
+            <Link
+              className="no-underline text-sm font-thin text-[#7b5449]"
+              key={sub.path}
+              to={sub.path}
+              onClick={() => {
+                setIsOpen(false);
+                setSubmenuOpen(false);
+              }}
+              style={{ transitionDelay: `${subIndex * 0.1 + 0.2}s` }}
+            >
+              {sub.label}
+            </Link>
+          ))}
+        </div>
+      </header>
     </>
   );
 }

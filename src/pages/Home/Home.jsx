@@ -36,14 +36,19 @@ export default function Home() {
             <p>“내새깽이”</p>
           </div>
         </div>
-        <button className="primary-btn">더 많은 이야기 보기</button>
+        <button className="bg-[#7b5449] p-3 text-white rounded-xl active:bg-[#5a3e36] active:text-stone-500 active:scale-[0.98]">
+          더 많은 이야기 보기
+        </button>
       </Section>
 
       <Section className="contact" title="필요한 순간, 곁에 있겠습니다.">
         <form className="contact-form">
           <Input label="이름" placeholder="이름을 입력하세요" />
           <Input label="연락처" type="tel" placeholder="010-1234-5678" />
-          <button type="submit" className="primary-btn">
+          <button
+            type="submit"
+            className="bg-[#7b5449] p-3 text-white rounded-xl active:bg-[#5a3e36] active:text-stone-500 active:scale-[0.98]"
+          >
             상담 신청
           </button>
         </form>
